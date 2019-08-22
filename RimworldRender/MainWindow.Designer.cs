@@ -30,6 +30,7 @@ namespace RimworldRender
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.startRenderButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
@@ -53,6 +54,11 @@ namespace RimworldRender
             this.codecLabel = new System.Windows.Forms.Label();
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.RenderPreviewCheckbox = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.selectFolderButton = new System.Windows.Forms.Button();
+            this.selectedFolderText = new System.Windows.Forms.Label();
+            this.helpButton = new System.Windows.Forms.Button();
+            this.githubButton = new System.Windows.Forms.Button();
             this.settingsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResolutionY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResolutionX)).BeginInit();
@@ -60,14 +66,15 @@ namespace RimworldRender
             ((System.ComponentModel.ISupportInitialize)(this.FramerateInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BitrateInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // startRenderButton
             // 
             this.startRenderButton.Enabled = false;
-            this.startRenderButton.Location = new System.Drawing.Point(263, 68);
+            this.startRenderButton.Location = new System.Drawing.Point(263, 96);
             this.startRenderButton.Name = "startRenderButton";
-            this.startRenderButton.Size = new System.Drawing.Size(118, 49);
+            this.startRenderButton.Size = new System.Drawing.Size(118, 41);
             this.startRenderButton.TabIndex = 0;
             this.startRenderButton.Text = "Start Render";
             this.startRenderButton.UseVisualStyleBackColor = true;
@@ -76,7 +83,7 @@ namespace RimworldRender
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(260, 9);
+            this.statusLabel.Location = new System.Drawing.Point(260, 44);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(96, 13);
             this.statusLabel.TabIndex = 1;
@@ -85,7 +92,7 @@ namespace RimworldRender
             // ProgressBar
             // 
             this.ProgressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ProgressBar.Location = new System.Drawing.Point(263, 39);
+            this.ProgressBar.Location = new System.Drawing.Point(263, 63);
             this.ProgressBar.Name = "ProgressBar";
             this.ProgressBar.Size = new System.Drawing.Size(439, 23);
             this.ProgressBar.Step = 1;
@@ -105,7 +112,7 @@ namespace RimworldRender
             // EstimatedTime
             // 
             this.EstimatedTime.AutoSize = true;
-            this.EstimatedTime.Location = new System.Drawing.Point(260, 143);
+            this.EstimatedTime.Location = new System.Drawing.Point(260, 163);
             this.EstimatedTime.Name = "EstimatedTime";
             this.EstimatedTime.Size = new System.Drawing.Size(62, 13);
             this.EstimatedTime.TabIndex = 4;
@@ -350,9 +357,9 @@ namespace RimworldRender
             // 
             // PictureBox
             // 
-            this.PictureBox.Location = new System.Drawing.Point(387, 68);
+            this.PictureBox.Location = new System.Drawing.Point(387, 96);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(323, 198);
+            this.PictureBox.Size = new System.Drawing.Size(323, 170);
             this.PictureBox.TabIndex = 6;
             this.PictureBox.TabStop = false;
             // 
@@ -361,19 +368,71 @@ namespace RimworldRender
             this.RenderPreviewCheckbox.AutoSize = true;
             this.RenderPreviewCheckbox.Checked = true;
             this.RenderPreviewCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RenderPreviewCheckbox.Location = new System.Drawing.Point(263, 123);
+            this.RenderPreviewCheckbox.Location = new System.Drawing.Point(263, 143);
             this.RenderPreviewCheckbox.Name = "RenderPreviewCheckbox";
             this.RenderPreviewCheckbox.Size = new System.Drawing.Size(106, 17);
             this.RenderPreviewCheckbox.TabIndex = 7;
             this.RenderPreviewCheckbox.Text = "Render pewview";
             this.RenderPreviewCheckbox.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.githubButton);
+            this.groupBox1.Controls.Add(this.helpButton);
+            this.groupBox1.Location = new System.Drawing.Point(721, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(182, 254);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Other";
+            // 
+            // selectFolderButton
+            // 
+            this.selectFolderButton.Location = new System.Drawing.Point(263, 12);
+            this.selectFolderButton.Name = "selectFolderButton";
+            this.selectFolderButton.Size = new System.Drawing.Size(93, 23);
+            this.selectFolderButton.TabIndex = 9;
+            this.selectFolderButton.Text = "Select folder";
+            this.selectFolderButton.UseVisualStyleBackColor = true;
+            this.selectFolderButton.Click += new System.EventHandler(this.UponSelectFolderButtonPressed);
+            // 
+            // selectedFolderText
+            // 
+            this.selectedFolderText.AutoSize = true;
+            this.selectedFolderText.Location = new System.Drawing.Point(362, 17);
+            this.selectedFolderText.Name = "selectedFolderText";
+            this.selectedFolderText.Size = new System.Drawing.Size(76, 13);
+            this.selectedFolderText.TabIndex = 10;
+            this.selectedFolderText.Text = "None selected";
+            // 
+            // helpButton
+            // 
+            this.helpButton.Location = new System.Drawing.Point(6, 25);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(170, 20);
+            this.helpButton.TabIndex = 0;
+            this.helpButton.Text = "Help!";
+            this.helpButton.UseVisualStyleBackColor = true;
+            // 
+            // githubButton
+            // 
+            this.githubButton.Location = new System.Drawing.Point(6, 54);
+            this.githubButton.Name = "githubButton";
+            this.githubButton.Size = new System.Drawing.Size(170, 20);
+            this.githubButton.TabIndex = 1;
+            this.githubButton.Text = "Visit github";
+            this.githubButton.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 277);
+            this.ClientSize = new System.Drawing.Size(915, 277);
+            this.Controls.Add(this.selectedFolderText);
+            this.Controls.Add(this.selectFolderButton);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RenderPreviewCheckbox);
             this.Controls.Add(this.PictureBox);
             this.Controls.Add(this.settingsGroup);
@@ -382,9 +441,10 @@ namespace RimworldRender
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.startRenderButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rimworld Render";
+            this.Text = "Rimworld Render byJames B";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.UponDragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.UponDragEnter);
@@ -396,6 +456,7 @@ namespace RimworldRender
             ((System.ComponentModel.ISupportInitialize)(this.FramerateInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BitrateInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,6 +487,11 @@ namespace RimworldRender
         public ComboBox SamplingComboBox;
         public PictureBox PictureBox;
         private CheckBox RenderPreviewCheckbox;
+        private GroupBox groupBox1;
+        private Button selectFolderButton;
+        public Label selectedFolderText;
+        private Button helpButton;
+        private Button githubButton;
     }
 }
 

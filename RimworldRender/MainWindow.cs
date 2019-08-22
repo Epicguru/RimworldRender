@@ -1,4 +1,5 @@
-﻿using AForge.Video.FFMPEG;
+﻿using Accord.Video.FFMPEG;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -83,9 +84,14 @@ namespace RimworldRender
 
             ImageFolderDir = files[0];
 
+            SelectFolder();
+        }
+
+        private void SelectFolder()
+        {
             ImagePaths = Directory.GetFiles(ImageFolderDir, "*.png", SearchOption.TopDirectoryOnly);
 
-            if(ImagePaths.Length < 2)
+            if (ImagePaths.Length < 2)
             {
                 MessageBox.Show($"The folder must contain at least two images to be rendered. Found {ImagePaths.Length}.", "Not enough images", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 ImageFolderDir = null;
@@ -97,6 +103,8 @@ namespace RimworldRender
 
             Program.SetStatus($"Ready: {ImagePaths.Length} images selected.");
             startRenderButton.Enabled = true;
+
+            selectedFolderText.Text = ImageFolderDir;
         }
 
         private void UponComboValueChanged(object sender, System.EventArgs e)
@@ -160,6 +168,23 @@ namespace RimworldRender
         private void UponFramerateChange(object sender, EventArgs e)
         {
             UponImagesPerSecondChange(sender, e);
+        }
+
+        private void UponSelectFolderButtonPressed(object sender, EventArgs e)
+        {
+            using (var d = new CommonOpenFileDialog("Image selector dialog"))
+            {
+                d.Title = "select the folder containing images.";
+                d.DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                d.IsFolderPicker = true;
+                d.Multiselect = false;
+
+                if(d.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    ImageFolderDir = d.FileName;
+                    SelectFolder();
+                }
+            }
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using AForge.Video.FFMPEG;
+﻿using Accord.Video.FFMPEG;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Threading;
 
@@ -117,7 +116,9 @@ namespace RimworldRender
             {
                 g.Clear(Color.Black);
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(original, new Rectangle(ox, oy, w, h), new Rectangle(0, 0, original.Width, original.Height), GraphicsUnit.Pixel);
+                int sw = original.Width;
+                int sh = original.Height;
+                g.DrawImage(original, new Rectangle(ox, oy, w, h), new Rectangle(0, 0, sw, sh), GraphicsUnit.Pixel);
             }
 
             return resized;
