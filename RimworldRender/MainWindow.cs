@@ -3,6 +3,8 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Net;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RimworldRender
@@ -184,6 +186,39 @@ namespace RimworldRender
                     ImageFolderDir = d.FileName;
                     SelectFolder();
                 }
+            }
+        }
+
+        private void CheckNewVersionButtonPressed(object sender, EventArgs e)
+        {
+            string txt = GetLatestVersionText();
+            if(txt != null)
+            {
+                MessageBox.Show(txt, "Latest version info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("ERROR - Failed to contact server for latest info! Check your internet connection!", "Latest version info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string GetLatestVersionText()
+        {
+            const string URL = @"https://github.com/Epicguru/RimworldRender/tree/master/RimworldRender/Version.txt";
+            WebClient wc = new WebClient();
+            try
+            {
+                byte[] bytes = wc.DownloadData(URL);
+                string text = Encoding.ASCII.GetString(bytes);
+
+                return text;
+            }
+            catch(Exception e)
+            {
+                Program.Log("Exception when downloading new version data from github.");
+                Program.Log($"Exception: {e.GetType().FullName} - {e.Message}");
+                Program.Log(e.StackTrace);
+                return null;
             }
         }
     }

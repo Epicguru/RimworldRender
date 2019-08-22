@@ -55,10 +55,11 @@ namespace RimworldRender
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.RenderPreviewCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.githubButton = new System.Windows.Forms.Button();
+            this.helpButton = new System.Windows.Forms.Button();
             this.selectFolderButton = new System.Windows.Forms.Button();
             this.selectedFolderText = new System.Windows.Forms.Label();
-            this.helpButton = new System.Windows.Forms.Button();
-            this.githubButton = new System.Windows.Forms.Button();
+            this.checkNewVersionButton = new System.Windows.Forms.Button();
             this.settingsGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResolutionY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ResolutionX)).BeginInit();
@@ -378,6 +379,7 @@ namespace RimworldRender
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.checkNewVersionButton);
             this.groupBox1.Controls.Add(this.githubButton);
             this.groupBox1.Controls.Add(this.helpButton);
             this.groupBox1.Location = new System.Drawing.Point(721, 12);
@@ -386,6 +388,24 @@ namespace RimworldRender
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Other";
+            // 
+            // githubButton
+            // 
+            this.githubButton.Location = new System.Drawing.Point(6, 54);
+            this.githubButton.Name = "githubButton";
+            this.githubButton.Size = new System.Drawing.Size(170, 20);
+            this.githubButton.TabIndex = 1;
+            this.githubButton.Text = "Visit github";
+            this.githubButton.UseVisualStyleBackColor = true;
+            // 
+            // helpButton
+            // 
+            this.helpButton.Location = new System.Drawing.Point(6, 25);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(170, 20);
+            this.helpButton.TabIndex = 0;
+            this.helpButton.Text = "Help!";
+            this.helpButton.UseVisualStyleBackColor = true;
             // 
             // selectFolderButton
             // 
@@ -406,23 +426,15 @@ namespace RimworldRender
             this.selectedFolderText.TabIndex = 10;
             this.selectedFolderText.Text = "None selected";
             // 
-            // helpButton
+            // checkNewVersionButton
             // 
-            this.helpButton.Location = new System.Drawing.Point(6, 25);
-            this.helpButton.Name = "helpButton";
-            this.helpButton.Size = new System.Drawing.Size(170, 20);
-            this.helpButton.TabIndex = 0;
-            this.helpButton.Text = "Help!";
-            this.helpButton.UseVisualStyleBackColor = true;
-            // 
-            // githubButton
-            // 
-            this.githubButton.Location = new System.Drawing.Point(6, 54);
-            this.githubButton.Name = "githubButton";
-            this.githubButton.Size = new System.Drawing.Size(170, 20);
-            this.githubButton.TabIndex = 1;
-            this.githubButton.Text = "Visit github";
-            this.githubButton.UseVisualStyleBackColor = true;
+            this.checkNewVersionButton.Location = new System.Drawing.Point(6, 80);
+            this.checkNewVersionButton.Name = "checkNewVersionButton";
+            this.checkNewVersionButton.Size = new System.Drawing.Size(170, 20);
+            this.checkNewVersionButton.TabIndex = 2;
+            this.checkNewVersionButton.Text = "Check for new version";
+            this.checkNewVersionButton.UseVisualStyleBackColor = true;
+            this.checkNewVersionButton.Click += new System.EventHandler(this.CheckNewVersionButtonPressed);
             // 
             // MainWindow
             // 
@@ -492,6 +504,7 @@ namespace RimworldRender
         public Label selectedFolderText;
         private Button helpButton;
         private Button githubButton;
+        private Button checkNewVersionButton;
     }
 }
 
