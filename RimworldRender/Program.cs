@@ -1,12 +1,18 @@
 ﻿using Accord.Video.FFMPEG;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace RimworldRender
 {
     static class Program
     {
+        public static string Version { get; private set; }
+        public static string VersionDate { get; private set; }
+        public static string VersionDescription { get; private set; }
+
         public static VideoCodec Format = VideoCodec.Default;
         private static MainWindow window;
 
@@ -16,9 +22,34 @@ namespace RimworldRender
         [STAThread]
         static void Main()
         {
+            LoadVersionInfo();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(window = new MainWindow());
+        }
+
+        public static void LoadVersionInfo()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "RimworldRender.Version.txt";
+            string result = null;
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+
+            string[] lines = result.Split('\n');
+            Version = lines[0].Trim();
+            VersionDate = lines[1].Trim();
+            VersionDescription = string.Empty;
+            for (int i = 2; i < lines.Length; i++)
+            {
+                VersionDescription += lines[i];
+            }
         }
 
         public static void Log(string s)

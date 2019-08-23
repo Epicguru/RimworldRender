@@ -1,6 +1,7 @@
 ﻿using Accord.Video.FFMPEG;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net;
@@ -53,6 +54,7 @@ namespace RimworldRender
                 Program.SetStatusSafe("Done!");
                 Rendering = false;
                 Program.SetProgressSafe(0);
+                Process.Start(new DirectoryInfo(ImageFolderDir).Parent.FullName);
             };
 
             r.StartRender();
@@ -204,22 +206,35 @@ namespace RimworldRender
 
         private string GetLatestVersionText()
         {
-            const string URL = @"https://github.com/Epicguru/RimworldRender/tree/master/RimworldRender/Version.txt";
-            WebClient wc = new WebClient();
-            try
-            {
-                byte[] bytes = wc.DownloadData(URL);
-                string text = Encoding.ASCII.GetString(bytes);
+            const string URL = @"https://raw.githubusercontent.com/Epicguru/RimworldRender/master/RimworldRender/Version.txt";
 
-                return text;
-            }
-            catch(Exception e)
+            using (WebClient wc = new WebClient())
             {
-                Program.Log("Exception when downloading new version data from github.");
-                Program.Log($"Exception: {e.GetType().FullName} - {e.Message}");
-                Program.Log(e.StackTrace);
-                return null;
-            }
+                try
+                {
+                    byte[] bytes = wc.DownloadData(URL);
+                    string text = Encoding.UTF8.GetString(bytes);
+
+                    return text;
+                }
+                catch (Exception e)
+                {
+                    Program.Log("Exception when downloading new version data from github.");
+                    Program.Log($"Exception: {e.GetType().FullName} - {e.Message}");
+                    Program.Log(e.StackTrace);
+                    return null;
+                }
+            }               
+        }
+
+        private void GithubButtonPressed(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/Epicguru/RimworldRender");
+        }
+
+        private void AboutButtonPressed(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Rimworld Render by James Billy (Epicguru)\nVersion: {Program.Version} ({Program.VersionDate})\nThis open source tool creates a video file in .avi format from a folder of images. Designed to work with rimworld images created by the Progress Renderer mod.", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
