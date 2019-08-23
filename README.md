@@ -1,10 +1,10 @@
 # Rimworld Render
-A tool designed to join create a video file from screenshots or map renders created by the Rimworld mod Progress Renderer [(Steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=1438693028) [(Github)](https://github.com/Lanilor/Progress-Renderer).
+A tool designed to join create a video file from screenshots or map renders created by the Rimworld mod Progress Renderer [(Steam)](https://steamcommunity.com/sharedfiles/filedetails/?id=1438693028) [(Github)](https://github.com/Lanilor/Progress-Renderer) created by Lanilor.
 
 **Important** Only runs on 64-bit Windows computers!
 
 ## Why use this
-Progress renderer can create really high resolution screenshots that are very hard to manipulate in video editing software. Creating a video of all those screenshots to create a timelapse is commonly done using FFMPEG, but a problem with that is that all screenshots must be exactly the same resolution. This is a big problem if you want to resize the screenshot area in-game. FFMPEG is also a command line tool that not all Rimworld players will be comfortable using.
+The Progress Renderer mod can create really high resolution screenshots that are very hard to manipulate in video editing software. Creating a video of all those screenshots to create a timelapse is commonly done using FFMPEG, but a problem with that is that all screenshots have to be exactly the same resolution. This is a big problem if you want to resize the screenshot area in-game. FFMPEG is also a command line tool that not all Rimworld players will be comfortable using.
 
 Using this tool you get a simple but functional user interface that allows you to adjust many settings to create the ideal video file from as many images as you want, and the input images can be in varying resolutions.
 
@@ -55,6 +55,7 @@ The number of input images that will be played per second. This is completely up
 - [ ] Create 32 bit version. (Would only allow for 2GB of RAM tho...)
 - [ ] Increase stability, automatically record and send crash reports.
 - [ ] Turn into a Rimworld mod?
+- [ ] Make command line inputs work, for automation. 
 
 ## Contribution
 Feel welcome to fork this Github repo and make you own changes to the program. You should compile using Visual Studio 2017 or 2019. The dependencies are all handled by NuGet.
