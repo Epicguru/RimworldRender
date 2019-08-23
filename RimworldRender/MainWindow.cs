@@ -195,8 +195,14 @@ namespace RimworldRender
         private void CheckNewVersionButtonPressed(object sender, EventArgs e)
         {
             string txt = GetLatestVersionText();
+            
             if(txt != null)
             {
+                string version = txt.Split('\n')[0];
+
+                bool upToDate = version.Trim() == Program.Version;
+                txt = txt.Trim();
+                txt += "\n\n" + (upToDate ? "You are up to date!" : "Download this update from the Github page.");
                 MessageBox.Show(txt, "Latest version info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -213,10 +219,9 @@ namespace RimworldRender
             {
                 try
                 {
-                    byte[] bytes = wc.DownloadData(URL);
-                    string text = Encoding.UTF8.GetString(bytes);
+                    string text = wc.DownloadString(URL);
 
-                    return text;
+                    return text.Trim();
                 }
                 catch (Exception e)
                 {

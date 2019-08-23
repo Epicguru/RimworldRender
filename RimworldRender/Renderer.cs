@@ -67,8 +67,9 @@ namespace RimworldRender
                     }
                     else
                     {
-                        frame = ResizeAndCenter(bitmap);
-                        bitmap.Dispose();
+                        frame = ResizeAndCenter(bitmap, out bool resized);
+                        if(resized)
+                            bitmap.Dispose();
                     }
 
                     if (RenderPreview)
@@ -107,8 +108,15 @@ namespace RimworldRender
             Done?.Invoke();
         }
 
-        private Bitmap ResizeAndCenter(Bitmap original)
+        private Bitmap ResizeAndCenter(Bitmap original, out bool didResize)
         {
+            // Don't resize if we don't need to!
+            if(original.Width == Width && original.Height == Height)
+            {
+                didResize = false;
+                return original;
+            }
+
             Bitmap resized = new Bitmap(Width, Height);
 
             var (w, h, ox, oy) = ScaleToFit(original.Width, original.Height, Width, Height);
@@ -122,6 +130,8 @@ namespace RimworldRender
                 g.DrawImage(original, new Rectangle(ox, oy, w, h), new Rectangle(0, 0, sw, sh), GraphicsUnit.Pixel);
             }
 
+
+            didResize = true;
             return resized;
         }
 
