@@ -44,9 +44,10 @@ namespace RimworldRender
             r.FrameRate = (int)FramerateInput.Value;
             r.FramesPerImage = Program.GetFramesPerImage();
             r.RenderPreview = RenderPreviewCheckbox.Checked;
+            r.InterpolationMode = (InterpolationMode)Enum.Parse(typeof(InterpolationMode), SamplingComboBox.Items[SamplingComboBox.SelectedIndex].ToString());
 
             Program.Log($"Starting render of all {ImagePaths.Length} files in {ImageFolderDir}");
-            Program.Log($"Resolution: {r.Width}x{r.Height}, Codec: {r.Codec}, Bitrate: {r.Bitrate}");
+            Program.Log($"Resolution: {r.Width}x{r.Height}, Codec: {r.Codec}, Bitrate: {r.Bitrate}, Sampling: {r.InterpolationMode}");
 
             r.Done += () =>
             {

@@ -18,6 +18,7 @@ namespace RimworldRender
         public int Width = 1920, Height = 1080;
         public int Bitrate = 1000 * 1000;
         public VideoCodec Codec = VideoCodec.MPEG4;
+        public InterpolationMode InterpolationMode = InterpolationMode.Bicubic;
         public bool RenderPreview = false;
 
         public Action Done;
@@ -115,7 +116,7 @@ namespace RimworldRender
             using (Graphics g = Graphics.FromImage(resized))
             {
                 g.Clear(Color.Black);
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.InterpolationMode = InterpolationMode;
                 int sw = original.Width;
                 int sh = original.Height;
                 g.DrawImage(original, new Rectangle(ox, oy, w, h), new Rectangle(0, 0, sw, sh), GraphicsUnit.Pixel);

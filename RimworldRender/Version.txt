@@ -1,3 +1,3 @@
-﻿Dev 1
+﻿Dev 2
 23/8/2019
-First version available.
+Added basic documentation, not all links are functional.

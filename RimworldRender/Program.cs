@@ -1,6 +1,7 @@
 ﻿using Accord.Video.FFMPEG;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace RimworldRender
         public static string VersionDescription { get; private set; }
 
         public static VideoCodec Format = VideoCodec.Default;
+        public static InterpolationMode InterpolationMode = InterpolationMode.HighQualityBicubic;
         private static MainWindow window;
 
         /// <summary>
