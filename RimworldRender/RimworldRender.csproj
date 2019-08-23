@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{46BA19C6-5029-4377-803C-4C4F3D5A845C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>RimworldRender</RootNamespace>
     <AssemblyName>RimworldRender</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
