@@ -372,9 +372,9 @@ namespace RimworldRender
             this.RenderPreviewCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.RenderPreviewCheckbox.Location = new System.Drawing.Point(263, 143);
             this.RenderPreviewCheckbox.Name = "RenderPreviewCheckbox";
-            this.RenderPreviewCheckbox.Size = new System.Drawing.Size(106, 17);
+            this.RenderPreviewCheckbox.Size = new System.Drawing.Size(101, 17);
             this.RenderPreviewCheckbox.TabIndex = 7;
-            this.RenderPreviewCheckbox.Text = "Render pewview";
+            this.RenderPreviewCheckbox.Text = "Render preview";
             this.RenderPreviewCheckbox.UseVisualStyleBackColor = true;
             // 
             // groupBox1
