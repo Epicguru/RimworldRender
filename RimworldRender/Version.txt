@@ -1,3 +1,4 @@
-﻿Dev 3
-23/8/2019
-First 'release' version. Some features still pending.
+﻿Dev 4
+07/9/2019
+- Added support for JPG files. Can even be mixed in with png files.
+- Images are now sorted by date written, which should be more consistent than the previous sorting.
